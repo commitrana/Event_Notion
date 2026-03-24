@@ -1,12 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Event Planner</title>
+  <title>CampusSync</title>
+  <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
-  <h2>Login</h2>
-  <button id="loginBtn">Sign in with Google</button>
 
-  <script type="module" src="/src/main.js"></script>
+<div class="container">
+
+  <!-- LOGIN -->
+  <div id="loginSection">
+    <h1>CampusSync</h1>
+    <button id="loginBtn">Sign in with Google</button>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="hidden">
+    <h2 id="welcome"></h2>
+
+    <div class="card">
+      <h3>Add Event</h3>
+      <input id="title" placeholder="Event title">
+      <input id="date" type="date">
+      <input id="startTime" type="time">
+      <input id="endTime" type="time">
+      <button id="addEventBtn">Add</button>
+    </div>
+
+    <div class="card">
+      <h3>Your Schedule</h3>
+      <ul id="eventList"></ul>
+    </div>
+
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+</div>
+
+<script type="module" src="/src/main.js"></script>
 </body>
 </html>

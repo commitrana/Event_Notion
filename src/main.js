@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
+import { getAuth, GoogleAuthProvider} from "firebase/auth";
+import { auth, provider } from "./firebase.js";
+import { signInWithPopup, signOut } from "firebase/auth";
+import { setupDashboard } from "./dashboard.js";
 // 🔐 Your Firebase config (same as yours)
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -20,12 +22,21 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 // 🎯 Button click
-document.getElementById("loginBtn").addEventListener("click", async () => {
-  try {
-    const result = await signInWithPopup(auth, provider);
-    console.log(result.user);
-    alert("Login successful 😎");
-  } catch (error) {
-    console.error(error);
-  }
+const loginBtn = document.getElementById("loginBtn");
+const loginSection = document.getElementById("loginSection");
+const dashboard = document.getElementById("dashboard");
+
+loginBtn.addEventListener("click", async () => {
+  const result = await signInWithPopup(auth, provider);
+  const user = result.user;
+
+  loginSection.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+
+  setupDashboard(user);
+});
+
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  await signOut(auth);
+  location.reload();
 });
