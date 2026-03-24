@@ -1,40 +1,130 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CampusSync</title>
+  <title>CampusSync - Student & Society Portal</title>
   <link rel="stylesheet" href="/src/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="container">
-
-  <!-- LOGIN -->
-  <div id="loginSection">
-    <h1>CampusSync</h1>
-    <button id="loginBtn">Sign in with Google</button>
+  <!-- LOGIN SECTION -->
+  <div id="loginSection" class="login-container">
+    <div class="login-card">
+      <h1 class="app-title">🎓 CampusSync</h1>
+      <p class="tagline">Your Campus Life, Organized</p>
+      <div class="login-options">
+        <button id="studentLoginBtn" class="login-btn student-btn">Sign in as Student</button>
+        <button id="societyLoginBtn" class="login-btn society-btn">Sign in as Society</button>
+      </div>
+      <div class="google-login">
+        <button id="loginBtn" class="google-btn">Sign in with Google</button>
+      </div>
+    </div>
   </div>
 
-  <!-- DASHBOARD -->
-  <div id="dashboard" class="hidden">
-    <h2 id="welcome"></h2>
-
-    <div class="card">
-      <h3>Add Event</h3>
-      <input id="title" placeholder="Event title">
-      <input id="date" type="date">
-      <input id="startTime" type="time">
-      <input id="endTime" type="time">
-      <button id="addEventBtn">Add</button>
+  <!-- STUDENT DASHBOARD -->
+  <div id="studentDashboard" class="dashboard hidden">
+    <div class="dashboard-header">
+      <div>
+        <h2 id="studentWelcome" class="welcome-text"></h2>
+        <p class="user-email" id="studentEmail"></p>
+      </div>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
     </div>
 
-    <div class="card">
-      <h3>Your Schedule</h3>
-      <ul id="eventList"></ul>
+    <!-- Dashboard Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="timeline">📅 Timeline</button>
+      <button class="tab-btn" data-tab="events">🎪 Events</button>
+      <button class="tab-btn" data-tab="classes">📚 Classes</button>
     </div>
 
-    <button id="logoutBtn">Logout</button>
+    <!-- Timeline View -->
+    <div id="timelineTab" class="tab-content active">
+      <div class="card">
+        <h3>Your Schedule</h3>
+        <div id="timelineView" class="timeline-container"></div>
+      </div>
+    </div>
+
+    <!-- Events Tab -->
+    <div id="eventsTab" class="tab-content hidden">
+      <div class="card">
+        <h3>Upcoming Events</h3>
+        <div id="eventsList" class="events-grid"></div>
+      </div>
+    </div>
+
+    <!-- Classes Tab -->
+    <div id="classesTab" class="tab-content hidden">
+      <div class="card">
+        <h3>Add Your Class Schedule</h3>
+        <div class="class-form">
+          <input id="classTitle" placeholder="Class Name (e.g., CS101)">
+          <input id="classDay" type="text" placeholder="Day (Monday, Tuesday, etc.)">
+          <input id="classStartTime" type="time">
+          <input id="classEndTime" type="time">
+          <input id="classVenue" placeholder="Venue/Room">
+          <button id="addClassBtn" class="primary-btn">Add Class</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Your Class Schedule</h3>
+        <div id="classesList" class="classes-container"></div>
+      </div>
+    </div>
   </div>
 
+  <!-- SOCIETY DASHBOARD -->
+  <div id="societyDashboard" class="dashboard hidden">
+    <div class="dashboard-header">
+      <div>
+        <h2 id="societyWelcome" class="welcome-text"></h2>
+        <p class="user-email" id="societyEmail"></p>
+      </div>
+      <button id="logoutBtnSociety" class="logout-btn">Logout</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="create">📝 Create Event</button>
+      <button class="tab-btn" data-tab="manage">📋 Manage Events</button>
+      <button class="tab-btn" data-tab="registrations">👥 Registrations</button>
+    </div>
+
+    <!-- Create Event Tab -->
+    <div id="createEventTab" class="tab-content active">
+      <div class="card">
+        <h3>Create New Event</h3>
+        <div class="event-form">
+          <input id="eventTitle" placeholder="Event Title">
+          <textarea id="eventDescription" placeholder="Event Description" rows="3"></textarea>
+          <input id="eventDate" type="date">
+          <input id="eventStartTime" type="time">
+          <input id="eventEndTime" type="time">
+          <input id="eventVenue" placeholder="Venue">
+          <input id="eventRegistrationLink" placeholder="Registration Link (optional)">
+          <button id="createEventBtn" class="primary-btn">Create Event</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Events Tab -->
+    <div id="manageEventsTab" class="tab-content hidden">
+      <div class="card">
+        <h3>Your Events</h3>
+        <div id="societyEventsList" class="events-grid"></div>
+      </div>
+    </div>
+
+    <!-- Registrations Tab -->
+    <div id="registrationsTab" class="tab-content hidden">
+      <div class="card">
+        <h3>Event Registrations</h3>
+        <div id="registrationsList" class="registrations-container"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script type="module" src="/src/main.js"></script>

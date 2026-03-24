@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-
+import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
-  apiKey: "AIzaSyCMinx_tvlOYSCEnUvhvnW05xcDrPKzOfE",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "events-notion.firebaseapp.com",
   projectId: "events-notion",
   storageBucket: "events-notion.firebasestorage.app",
@@ -14,3 +14,4 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
+export const db = getFirestore(app);
