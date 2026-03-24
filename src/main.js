@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 // 🔐 Your Firebase config (same as yours)
 const firebaseConfig = {
-  apiKey: "AIzaSyCMinx_tvlOYSCEnUvhvnW05xcDrPKzOfE",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "events-notion.firebaseapp.com",
   projectId: "events-notion",
   storageBucket: "events-notion.firebasestorage.app",
